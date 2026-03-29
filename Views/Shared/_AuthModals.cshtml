@@ -1,0 +1,194 @@
+<!-- ════════════ REGISTER MODAL ════════════ -->
+<div class="mb" id="mreg">
+  <div class="modal">
+    <div class="modal-hero-l" id="rbd">00 — Prime Contractor</div>
+    <div class="mh"><span class="mbadge" style="letter-spacing:.2em;">Secure access</span><button class="mclose" onclick="closeMregSafe()">✕</button></div>
+    <div class="mtit" id="rtit">Join OrbitLink</div>
+    <div class="msub" id="rsub">Create your organization profile for the ecosystem</div>
+    <div class="tabs">
+      <button class="tb act" id="tab-reg" onclick="sw('rp-reg',this)">Register</button>
+      <button class="tb" id="tab-log" onclick="sw('rp-log',this)">Sign In</button>
+    </div>
+    <!-- REGISTER -->
+    <div class="fp act" id="rp-reg">
+      <div class="stepd" id="sdots"></div>
+      <!-- Step 1 -->
+      <div class="fs act" id="s1">
+        <div class="frow">
+          <div class="fg"><label>Organization Name</label><input id="fo" type="text" placeholder="e.g. AeroStar Systems"></div>
+          <div class="fg"><label>Country</label><select id="fc">
+            <option>Turkey 🇹🇷</option><option>Germany 🇩🇪</option><option>USA 🇺🇸</option>
+            <option>France 🇫🇷</option><option>Italy 🇮🇹</option><option>UK 🇬🇧</option><option>UAE 🇦🇪</option>
+          </select></div>
+        </div>
+        <div class="fg"><label>Work Email</label><input id="fe" type="email" placeholder="name@organization.com"></div>
+        <div class="fg"><label id="lbl-domain">Primary Space Domain</label><select id="fd"></select></div>
+        <div class="snav"><button class="bnx" onclick="goStep2()">Next: Capabilities →</button></div>
+      </div>
+      <!-- Step 2 -->
+      <div class="fs" id="s2">
+        <div class="fg">
+          <label id="lbl-caps">Technical Capabilities <span style="color:var(--danger);font-size:.6rem;">*required</span></label>
+          <div class="cap-list" id="ctg"></div>
+        </div>
+        <div class="fg"><label>TRL Range</label><select id="ft">
+          <option>TRL 1–3 (Research)</option><option>TRL 4–6 (Prototype)</option><option>TRL 7–9 (Operational)</option><option>TRL 1–9 (Full range)</option>
+        </select></div>
+        <div class="fg">
+          <label>Certifications</label>
+          <div class="cap-list" id="crtg"></div>
+        </div>
+        <div class="snav"><button class="bbk" onclick="ns(1)">← Back</button><button class="bnx" onclick="goStep3()">Next: Account →</button></div>
+      </div>
+      <!-- Step 3 -->
+      <div class="fs" id="s3">
+        <div class="frow">
+          <div class="fg">
+            <label>Password</label>
+            <div class="pw-wrap">
+              <input type="password" id="fpw" placeholder="••••••••" oninput="checkPw()">
+              <button type="button" class="pw-toggle" onclick="togglePw('fpw',this)">👁</button>
+            </div>
+            <div class="pw-hints" id="pw-hints">
+              <span id="ph-len" class="fail">✗ 8+ chars</span>
+              <span id="ph-up" class="fail">✗ Uppercase</span>
+              <span id="ph-num" class="fail">✗ Number</span>
+              <span id="ph-sym" class="fail">✗ Symbol</span>
+            </div>
+          </div>
+          <div class="fg">
+            <label>Confirm Password</label>
+            <div class="pw-wrap">
+              <input type="password" id="fpwc" placeholder="••••••••" oninput="checkPwMatch()">
+              <button type="button" class="pw-toggle" onclick="togglePw('fpwc',this)">👁</button>
+            </div>
+            <div class="pw-error" id="pw-err" style="display:none;">⚠ Passwords do not match</div>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Collaboration Interests</label>
+          <div class="cap-list" id="collab-tg">
+            <div class="cap-item" onclick="toggleCap(this)"><div class="cap-cb"></div><span class="cap-lbl">Prime Partnerships</span></div>
+            <div class="cap-item" onclick="toggleCap(this)"><div class="cap-cb"></div><span class="cap-lbl">Startup Integration</span></div>
+            <div class="cap-item" onclick="toggleCap(this)"><div class="cap-cb"></div><span class="cap-lbl">University R&D</span></div>
+            <div class="cap-item" onclick="toggleCap(this)"><div class="cap-cb"></div><span class="cap-lbl">Test / Validation</span></div>
+            <div class="cap-item" onclick="toggleCap(this)"><div class="cap-cb"></div><span class="cap-lbl">International Collaboration</span></div>
+            <div class="cap-item" onclick="toggleCap(this)"><div class="cap-cb"></div><span class="cap-lbl">Joint Bids</span></div>
+          </div>
+        </div>
+        <div class="snav"><button class="bbk" onclick="ns(2)">← Back</button><button class="bnx" onclick="creg()">Create Account & Enter →</button></div>
+      </div>
+    </div>
+    <!-- LOGIN -->
+    <div class="fp" id="rp-log">
+      <div class="fg"><label>Work Email</label><input id="le" type="email" placeholder="name@organization.com"></div>
+      <div class="fg">
+        <label>Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="lpw" placeholder="••••••••">
+          <button type="button" class="pw-toggle" onclick="togglePw('lpw',this)">👁</button>
+        </div>
+      </div>
+      <button class="bpri" onclick="clog()">Sign In & Enter Dashboard →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ EDIT PROFILE MODAL ════════════ -->
+<div class="mb" id="medit">
+  <div class="modal edit-modal-inner">
+    <div class="mh"><span class="mbadge">Edit Profile</span><button class="mclose" onclick="cm('medit')">✕</button></div>
+    <div class="mtit">Update Your Profile</div>
+    <div class="msub">Changes will be reflected across the ecosystem</div>
+    <div class="section-lbl">Organization Info</div>
+    <div class="frow">
+      <div class="fg"><label>Organization Name</label><input id="efo" type="text"></div>
+      <div class="fg"><label>Country</label><select id="efc">
+        <option>Turkey 🇹🇷</option><option>Germany 🇩🇪</option><option>USA 🇺🇸</option>
+        <option>France 🇫🇷</option><option>Italy 🇮🇹</option><option>UK 🇬🇧</option><option>UAE 🇦🇪</option>
+      </select></div>
+    </div>
+    <div class="fg"><label>Work Email</label><input id="efe" type="email"></div>
+    <div class="frow">
+      <div class="fg"><label>Primary Space Domain</label><select id="efd"></select></div>
+      <div class="fg"><label>TRL Range</label><select id="eft">
+        <option>TRL 1–3 (Research)</option><option>TRL 4–6 (Prototype)</option><option>TRL 7–9 (Operational)</option><option>TRL 1–9 (Full range)</option>
+      </select></div>
+    </div>
+    <div class="section-lbl">Technical Capabilities</div>
+    <div class="cap-list" id="ectg" style="max-height:180px;overflow-y:auto;"></div>
+    <div class="section-lbl">Certifications</div>
+    <div class="cap-list" id="ecrtg"></div>
+    <div class="section-lbl">Collaboration Interests</div>
+    <div class="cap-list" id="ecollab"></div>
+    <div style="display:flex;gap:.5rem;margin-top:1rem;">
+      <button class="bbk" onclick="cm('medit')" style="flex:0 0 auto;">Cancel</button>
+      <button class="bnx" onclick="saveEdit()">Save Changes →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ COLLAB MODAL ════════════ -->
+<div class="mb" id="mcol">
+  <div class="modal">
+    <div class="mh"><span class="mbadge">Collaboration Request</span><button class="mclose" onclick="cm('mcol')">✕</button></div>
+    <div class="mtit">Send Request</div>
+    <div class="msub">Initiate a collaboration with this organization</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem;background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.12);border-radius:2px;margin-bottom:1.1rem;">
+      <div><div style="font-family:var(--ff-head);font-size:.9rem;font-weight:600;letter-spacing:.07em;" id="clan">—</div><div style="font-size:.65rem;color:rgba(255,255,255,.3);font-family:var(--ff-mono);margin-top:.15rem;" id="clat">—</div></div>
+      <div style="font-family:var(--ff-mono);font-size:.65rem;letter-spacing:.12em;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.25);color:var(--cyan);padding:.14rem .38rem;border-radius:2px;" id="clam">—</div>
+    </div>
+    <div class="fg"><label>Request Title</label><input id="clt" type="text" placeholder="e.g. CubeSat Thermal Component Supply"></div>
+    <div class="fg"><label>Description</label><textarea id="cld" rows="3" placeholder="Brief description of your collaboration need…" style="resize:none;"></textarea></div>
+    <div class="frow">
+      <div class="fg"><label>Priority</label><select><option>Medium</option><option>High</option><option>Low</option></select></div>
+      <div class="fg"><label>Timeline</label><select><option>1–3 months</option><option>3–6 months</option><option>6–12 months</option></select></div>
+    </div>
+    <button class="bpri" onclick="scol()">Send Collaboration Request →</button>
+  </div>
+</div>
+
+<!-- ════════════ REPORT MODAL ════════════ -->
+<div class="mb" id="mrpt">
+  <div class="modal" style="max-width:420px;">
+    <div class="mh"><span class="mbadge" style="background:rgba(255,75,75,.08);border-color:rgba(255,75,75,.25);color:#ff8f8f;">Report Organization</span><button class="mclose" onclick="cm('mrpt')">✕</button></div>
+    <div class="mtit" id="rpt-tit">Report Profile</div>
+    <div class="msub" id="rtn">—</div>
+    <div id="rpt-prev-wrap" class="rpt-prev-box" style="display:none;"><strong>Existing report on file</strong><span id="rpt-prev-detail"></span></div>
+    <div id="rpt-form-wrap">
+    <p style="font-size:.72rem;color:rgba(255,255,255,.35);line-height:1.65;margin-bottom:.5rem;font-weight:300;">Each organization may be reported once per signed-in account. Multiple independent reports can trigger a trust review.</p>
+    <div class="rr">
+      <label class="rrw"><input type="radio" name="rr" value="misleading"><span class="rrt">Misleading profile / false capabilities</span></label>
+      <label class="rrw"><input type="radio" name="rr" value="certs"><span class="rrt">Invalid or missing certifications</span></label>
+      <label class="rrw"><input type="radio" name="rr" value="unresponsive"><span class="rrt">Unresponsive after collaboration request</span></label>
+      <label class="rrw"><input type="radio" name="rr" value="mismatch"><span class="rrt">Delivery / capability mismatch</span></label>
+      <label class="rrw"><input type="radio" name="rr" value="other"><span class="rrt">Other</span></label>
+    </div>
+    <button class="bdng" id="rpt-submit-btn" onclick="srpt()">Submit Report</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ RATING MODAL ════════════ -->
+<div class="mb" id="mrat">
+  <div class="modal" style="max-width:360px;">
+    <div class="mh"><span class="mbadge">Rate Partner</span><button class="mclose" onclick="cm('mrat')">✕</button></div>
+    <div class="mtit" id="rat-tit">Leave a Review</div>
+    <div class="msub" id="ratn">Organization</div>
+    <div id="rat-prev-wrap" class="rat-prev-box" style="display:none;">
+      <div class="rp-lbl">Your saved review</div>
+      <div class="star-row" id="strd-prev" style="pointer-events:none;"></div>
+      <p id="rat-prev-note" style="font-size:.82rem;color:rgba(220,230,250,.65);line-height:1.5;margin-top:.65rem;font-weight:400;"></p>
+    </div>
+    <div id="rat-new-wrap">
+    <div style="text-align:center;padding:.75rem 0 .5rem;">
+      <div class="star-row" id="strd" title="Rate 1–5 stars">
+        <span class="si" data-v="1">★</span><span class="si" data-v="2">★</span><span class="si" data-v="3">★</span><span class="si" data-v="4">★</span><span class="si" data-v="5">★</span>
+      </div>
+      <div style="font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.35rem;" id="strl">Tap a star to rate</div>
+    </div>
+    <div class="fg"><label>Short Review (optional)</label><textarea rows="2" placeholder="Describe your collaboration experience…" style="resize:none;" id="ratcm"></textarea></div>
+    <button class="bpri" id="rat-submit-btn" onclick="srat()">Submit Review →</button>
+    </div>
+  </div>
+</div>

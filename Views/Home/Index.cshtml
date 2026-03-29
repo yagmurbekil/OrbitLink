@@ -1,0 +1,176 @@
+﻿@model OrbitLinkApp.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "OrbitLink - Ecosystem";
+}
+
+<!-- ════════════ HERO PAGE ════════════ -->
+<div class="page on" id="ph">
+  <div class="hero-top">
+    <div class="hero-brand">
+      <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="21" stroke="rgba(180,210,255,.5)" stroke-width="1.25"/><path d="M22 8L27 22L22 36L17 22Z" fill="rgba(255,255,255,.92)"/><path d="M8 22L22 17L36 22L22 27Z" fill="rgba(100,160,230,.45)"/></svg>
+      <span>Orbit<em>Link</em></span>
+    </div>
+    <div class="hero-rule" aria-hidden="true"></div>
+  </div>
+  <div class="hb">
+    <div class="hl">
+      <p class="hsub">So, you want to build the</p>
+      <h1 class="htit htit-hero"><span class="htit-main">Space Industry</span></h1>
+      <p class="hdesc">OrbitLink connects space ecosystem stakeholders through role-specific profiles, technical compatibility scores, and verified trust ratings — enabling fast, reliable B2B collaboration.</p>
+      <button type="button" class="chat-hero-btn" onclick="openChatDock()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H4V4h16v12z"/></svg>
+        Assistant
+      </button>
+    </div>
+    <div class="hr">
+      <p class="rl">Select your role to begin</p>
+      <div class="rg">
+        <div class="rc" onclick="openReg('Project Owner / Prime Contractor','00')"><div class="rnum">00</div><div class="rc-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="18" ry="8" opacity=".35"/><circle cx="24" cy="24" r="4" fill="currentColor" opacity=".25"/><path d="M24 6v6M42 24h-6M24 36v6M6 24h6"/><path d="M14 14l4 4M30 14l-4 4M30 30l-4-4M14 30l4-4"/></svg></div><span class="rname">Prime Contractor</span><p class="rdesc">Lead programs and source qualified suppliers, laboratories, and emerging ventures.</p><div class="rarr">→</div></div>
+        <div class="rc" onclick="openReg('Supplier / Manufacturer','01')"><div class="rnum">01</div><div class="rc-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8l14 8v16l-14 8-14-8V16z"/><circle cx="24" cy="24" r="6"/><path d="M24 18v12M18 24h12"/></svg></div><span class="rname">Supplier / Mfr.</span><p class="rdesc">Document capabilities and align with mission needs across the supply chain.</p><div class="rarr">→</div></div>
+        <div class="rc" onclick="openReg('R&D / Test Laboratory','02')"><div class="rnum">02</div><div class="rc-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M16 38h16"/><path d="M24 38V14"/><path d="M18 14h12l-2 16h-8l-2-16z"/><path d="M20 8h8v6h-8z"/></svg></div><span class="rname">R&D / Test Lab</span><p class="rdesc">Offer validation, environmental test, and certification services with traceability.</p><div class="rarr">→</div></div>
+        <div class="rc" onclick="openReg('SpaceTech Startup','03')"><div class="rnum">03</div><div class="rc-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8c8 12 10 20 10 28a10 10 0 01-20 0c0-8 2-16 10-28z"/><path d="M24 22v8M20 38h8"/></svg></div><span class="rname">SpaceTech Startup</span><p class="rdesc">Connect with primes and partners to mature technology and reach flight heritage.</p><div class="rarr">→</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="shint"><span class="sdot"></span>Select your role to enter the ecosystem</div>
+
+<!-- ════════════ DASHBOARD PAGE ════════════ -->
+<div class="page" id="pd">
+  <nav style="border-bottom:1px solid rgba(0,212,255,.07);padding:1rem 1.5rem;">
+    <div class="logo">
+      <svg viewBox="0 0 44 44" fill="none" width="34" height="34"><circle cx="22" cy="22" r="21" stroke="#00d4ff" stroke-width="1.5" opacity=".7"/><path d="M22 5L26.5 22L22 39L17.5 22Z" fill="white"/><path d="M5 22L22 17.5L39 22L22 26.5Z" fill="#00d4ff" opacity=".55"/></svg>
+      <span class="logo-t">Orbit<span>Link</span></span>
+    </div>
+    <div style="margin-left:auto;display:flex;gap:.6rem;align-items:center;">
+      <span id="nrb" style="font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.22);color:var(--cyan);padding:.18rem .55rem;border-radius:2px;"></span>
+      <button class="btn-sm btn-out" onclick="goHero()">← Exit</button>
+    </div>
+  </nav>
+  <div class="dl" style="flex:1;overflow:hidden;">
+          @await Html.PartialAsync("_Sidebar")
+
+    <!-- MATCHES -->
+    <div class="mc act" id="tm">
+      <div class="ch">
+        <div><div class="ptit">Recommended Matches</div><div class="psub">// based on your profile · updated just now</div></div>
+        <div class="ha"><button class="btn-sm btn-out" onclick="stab('explore',document.querySelectorAll('.sbi')[1])">Browse All →</button></div>
+      </div>
+      <div class="sr">
+        <div class="sc"><div class="sclbl">Match Pool</div><div class="scval">247</div><div class="scsub">Active companies</div></div>
+        <div class="sc"><div class="sclbl">Avg. Compatibility</div><div class="scval">84%</div><div class="scsub">Your profile score</div></div>
+        <div class="sc"><div class="sclbl">Top Match</div><div class="scval" id="tms">95%</div><div class="scsub">Best fit today</div></div>
+        <div class="sc"><div class="sclbl">Requests Sent</div><div class="scval" id="rsc">0</div><div class="scsub">This session</div></div>
+      </div>
+      <div class="sect">// best matches for you</div>
+      <div class="mg" id="mgrid">
+@foreach (var company in Model.Companies.OrderByDescending(x => x.OverallMatch))
+{
+    <div class="mcard">
+        @if (company.UnderReview) { <div class="urbdg">⚠ Under Review</div> }
+        <div class="mct">
+            <div><div class="cn">@company.Name</div><div class="ct">@company.Type · @company.Country</div></div>
+            <div class="msb"><div class="spct">@(company.OverallMatch)%</div><div class="slbl">Match</div></div>
+        </div>
+        <div class="bars">
+            <div class="br"><span class="bl">Capability</span><div class="bt"><div class="bf" style="width:@(company.Scores.CapabilityMatch)%"></div></div><span class="bp">@(company.Scores.CapabilityMatch)%</span></div>
+            <div class="br"><span class="bl">Domain</span><div class="bt"><div class="bf" style="width:@(company.Scores.DomainMatch)%"></div></div><span class="bp">@(company.Scores.DomainMatch)%</span></div>
+            <div class="br"><span class="bl">TRL</span><div class="bt"><div class="bf" style="width:@(company.Scores.TrlMatch)%"></div></div><span class="bp">@(company.Scores.TrlMatch)%</span></div>
+            <div class="br"><span class="bl">Cert</span><div class="bt"><div class="bf" style="width:@(company.Scores.CertMatch)%"></div></div><span class="bp">@(company.Scores.CertMatch)%</span></div>
+        </div>
+        <div class="ctags">
+            @foreach(var tag in company.Tags) {
+                <div class="ctag">@tag</div>
+            }
+        </div>
+        <div class="cf">
+            <div class="crat">
+                <span class="stars">@(new string('★', (int)company.Rating))@(new string('☆', 5 - (int)company.Rating))</span>
+                <span class="rc2">@company.Rating (@company.Reviews)</span>
+            </div>
+            <div class="ca">
+                <button type="button" class="bc bconn" onclick="ocolm(@company.Id)">Request →</button>
+                <button type="button" class="bc" style="background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--cyan);font-family:var(--ff-head);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .55rem;border-radius:2px;cursor:pointer;" onclick="oratm(@company.Id)">Rate</button>
+                <button type="button" class="bc brep" title="Report organization" onclick="orptm(@company.Id)">⚑</button>
+            </div>
+        </div>
+    </div>
+}
+</div>
+    </div>
+
+    <!-- EXPLORE -->
+    <div class="mc" id="te">
+      <div class="ch"><div><div class="ptit">Ecosystem Explorer</div><div class="psub">// search & filter all registered organizations</div></div></div>
+      <div class="sbar"><input class="si2" placeholder="Search company, capability, domain…" oninput="fexp(this.value)"></div>
+      <div class="filter-row">
+        <span class="filter-lbl">Type:</span>
+        <button class="fbt act" onclick="setF('All',this)">All</button>
+        <button class="fbt" onclick="setF('Supplier / Manufacturer',this)">Suppliers</button>
+        <button class="fbt" onclick="setF('R&D / Test Laboratory',this)">Labs</button>
+        <button class="fbt" onclick="setF('SpaceTech Startup',this)">Startups</button>
+        <button class="fbt" onclick="setF('Project Owner / Prime Contractor',this)">Prime</button>
+      </div>
+      <div class="filter-row">
+        <span class="filter-lbl">Country:</span>
+        <select class="sort-select" id="countryFilter" onchange="applyFilters()">
+          <option value="">All Countries</option>
+          <option>Turkey 🇹🇷</option><option>Germany 🇩🇪</option><option>USA 🇺🇸</option>
+          <option>France 🇫🇷</option><option>Italy 🇮🇹</option><option>UK 🇬🇧</option><option>UAE 🇦🇪</option>
+        </select>
+        <span class="filter-lbl" style="margin-left:.5rem;">Sort:</span>
+        <select class="sort-select" id="sortMode" onchange="applyFilters()">
+          <option value="match">By Match %</option>
+          <option value="rating">By Rating</option>
+          <option value="name">By Name</option>
+          <option value="country">By Country</option>
+        </select>
+      </div>
+      <div class="mg" id="egrid"></div>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="mc" id="tn">
+      <div class="ch"><div><div class="ptit">Notifications</div><div class="psub">// your collaboration activity & alerts</div></div></div>
+      <div class="nl2" id="nlist"></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="mc" id="tpr">
+      <div class="ch"><div><div class="ptit">My Profile</div><div class="psub">// your organization visible to ecosystem partners</div></div></div>
+      <div class="prof-wrap">
+        <div class="prof-sidebar">
+          <div class="prof-av-wrap">
+            <div class="prof-av" id="pav2">A</div>
+            <div class="prof-org" id="pon2">Organization</div>
+            <div class="prof-role" id="prd2">Role</div>
+            <div class="prof-status"><span style="width:6px;height:6px;border-radius:50%;background:var(--success);display:inline-block;"></span>Verified</div>
+          </div>
+          <div class="prof-field"><span class="prof-lbl">Country</span><span class="prof-val" id="pco2">—</span></div>
+          <div class="prof-field"><span class="prof-lbl">Email</span><span class="prof-val" id="pem2">—</span></div>
+          <div class="prof-field"><span class="prof-lbl">TRL Range</span><span class="prof-val" id="ptrl2">—</span></div>
+          <div class="prof-field"><span class="prof-lbl">Domain</span><span class="prof-val" id="pdom2">—</span></div>
+          <div class="prof-field"><span class="prof-lbl">Certifications</span><span class="prof-val" id="pcerts2">—</span></div>
+          <div class="prof-field"><span class="prof-lbl">Collaboration</span><span class="prof-val" id="pcollab2">—</span></div>
+          <button class="edit-btn" onclick="openEditProfile()">✏ Edit Profile</button>
+        </div>
+        <div class="prof-main">
+          <div class="pcard2">
+            <div class="pcard2-tit">// technical capabilities</div>
+            <div class="caps-display" id="pcaps2"></div>
+          </div>
+          <div class="pcard2">
+            <div class="pcard2-tit">// trust & activity</div>
+            <div class="prof-grid">
+              <div><span class="prof-lbl">Trust Score</span><span class="prof-val" id="ptrust" style="color:var(--cyan);font-size:1.3rem;font-family:var(--ff-head);font-weight:600;">⭐ —</span></div>
+              <div><span class="prof-lbl">Profile Status</span><span class="prof-val" style="color:var(--success);">Active</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@await Html.PartialAsync("_ChatAssistant")
+@await Html.PartialAsync("_AuthModals")

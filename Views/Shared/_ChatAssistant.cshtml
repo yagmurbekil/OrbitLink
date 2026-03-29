@@ -1,0 +1,16 @@
+<div class="chat-dock" id="chatdock">
+  <div class="chat-panel" id="chatpanel" role="dialog" aria-label="OrbitLink assistant">
+    <div class="chat-ph">
+      <span>OrbitLink Assistant</span>
+      <button type="button" onclick="closeChatDock()" aria-label="Close">✕</button>
+    </div>
+    <div class="chat-msgs" id="chatmsgs"></div>
+    <div class="chat-row">
+      <input type="text" id="chatin" placeholder="Ask about roles, matching, trust…" autocomplete="off" onkeydown="if(event.key==='Enter')sendChat()">
+      <button type="button" onclick="sendChat()">Send</button>
+    </div>
+  </div>
+  <button type="button" class="chat-fab" onclick="toggleChatDock()" aria-expanded="false" id="chatfab" aria-label="Open chat">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H4V4h16v12z"/></svg>
+  </button>
+</div>
